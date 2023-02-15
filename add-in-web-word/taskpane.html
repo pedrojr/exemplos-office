@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script type="text/javascript" src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
+</head>
+
+<body>
+    <button id="testButton">Test</button>
+</body>
+
+<script>
+    Office.onReady((info) => {
+        if (info.host === Office.HostType.Word) {
+            document.getElementById("testButton").onclick = testClick;
+        }
+    });
+
+    function testClick() {
+        return Word.run((context) => {
+            const paragraph = context.document.body.insertParagraph("Test", Word.InsertLocation.start);
+            return context.sync();
+        });
+    }
+</script>
+</html>
